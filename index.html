@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- swiper lsider -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- AOS animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- stylesheet -->
+    <link href="style.css" rel="stylesheet">
+    <title>Infinite</title>
+</head>
+
+<body>
+    <!-- Background Flashes -->
+    <canvas id="noise" class="noise"></canvas>
+    <main>
+        <header class="main-header">
+            <div class="container-fluid">
+                <nav class="nav-menu">
+                    <div class="logo" data-aos="fade-up">
+                        <a href="#">
+                            <svg viewBox="0 0 190 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <path d="M17.518 8.095v19.463h-8.66V8.095H0v-6.68h26.317v6.7h-8.799v-.02zm22.557-.409a9.517 9.517 0 013.542-.657c2.4 0 4.222.638 5.423 1.931 1.2 1.294 1.8 3.148 1.8 5.581V27.5h-7.824V15.43c0-.849-.22-1.544-.68-2.066-.46-.521-1.1-.772-1.941-.772-.96 0-1.761.309-2.362.908-.6.598-.9 1.351-.9 2.24V27.5h-7.824V0h7.824v9.56c.82-.812 1.801-1.43 2.942-1.874zm33.09 1.934c1.996 1.72 2.993 4.348 2.993 7.885V18.8H60.634c0 1.45.34 2.532.998 3.266.658.735 1.716 1.102 3.152 1.102 1.297 0 2.275-.27 2.874-.792.618-.522.918-1.237.918-2.126h7.562c0 2.435-.957 4.329-2.853 5.701-1.916 1.372-4.69 2.049-8.34 2.049-3.832 0-6.825-.87-8.94-2.59-2.115-1.74-3.173-4.349-3.173-7.866 0-3.44 1.038-6.05 3.093-7.808 2.055-1.779 4.909-2.648 8.54-2.648 3.811-.058 6.705.811 8.7 2.532zm-12.471 5.605h7.602c0-1.044-.299-1.856-.917-2.474-.619-.6-1.477-.909-2.575-.909-2.454.02-3.83 1.14-4.11 3.383zm42.66-1.455c-.897 1.297-2.172 2.246-3.865 2.846l5.976 10.942h-9.702l-4.78-9.548h-3.188v9.548h-8.647V1.414h16.476c1.932 0 3.586.368 4.941 1.085 1.354.716 2.39 1.704 3.087 2.924a8.026 8.026 0 011.036 4.008c0 1.588-.438 3.04-1.334 4.338zm-8.168-5.714c-.479-.464-1.036-.677-1.714-.677h-5.677V12.2h5.677c.678 0 1.255-.233 1.714-.697.478-.465.697-1.046.697-1.724 0-.678-.22-1.259-.697-1.724zm30.494 1.658c-2.077-1.777-4.933-2.665-8.568-2.665s-6.491.888-8.548 2.646c-2.057 1.776-3.095 4.383-3.095 7.802 0 3.437 1.038 6.044 3.095 7.821 2.057 1.777 4.913 2.646 8.548 2.646s6.491-.889 8.568-2.665c2.077-1.777 3.115-4.384 3.115-7.802 0-3.419-1.038-6.006-3.115-7.783zm-5.453 13.538h-6.191l1.618-5.775c-.959-.502-1.618-1.487-1.618-2.626 0-1.661 1.378-2.994 3.096-2.994 1.717 0 3.095 1.333 3.095 2.994 0 1.14-.659 2.124-1.617 2.626l1.617 5.775zm30.171-13.521c-2.077-1.775-4.933-2.663-8.567-2.663-3.635 0-6.491.888-8.548 2.663-2.057 1.775-3.095 4.36-3.095 7.795 0 3.434 1.038 6.039 3.095 7.814 2.057 1.775 4.913 2.643 8.548 2.643 3.634 0 6.49-.887 8.567-2.662s3.116-4.38 3.116-7.795-1.039-6-3.116-7.795zm-5.452 13.487h-6.191l1.618-5.75a2.999 2.999 0 01-1.618-2.643c0-1.66 1.378-2.991 3.096-2.991 1.717 0 3.095 1.331 3.095 2.99 0 1.139-.659 2.123-1.617 2.644l1.617 5.75zm43.298-14.292c1.177 1.296 1.755 3.153 1.755 5.572V27.48h-7.796V15.407c0-.851-.219-1.548-.637-2.07-.439-.522-1.037-.774-1.815-.774-.917 0-1.655.31-2.233.91-.578.6-.857 1.354-.857 2.244v11.782h-7.795V15.407c0-.851-.22-1.548-.638-2.07-.439-.522-1.037-.774-1.815-.774-.917 0-1.654.31-2.233.91-.578.6-.857 1.354-.857 2.244v11.782h-7.815V7.436h6.38l.518 2.999c.778-1.064 1.814-1.896 3.11-2.535a9.347 9.347 0 014.087-.928c3.11 0 5.184 1.16 6.261 3.463.817-1.064 1.854-1.896 3.11-2.535a8.902 8.902 0 013.967-.928c2.353 0 4.127.657 5.303 1.954z" fill="currentColor"></path>
+                        </svg>
+                        </a>
+                    </div>
+                    <div class="menu-list">
+                        <ul>
+                            <li data-aos="fade-up">
+                                <a href="#">Our Showwreel</a>
+                            </li>
+                            <li data-aos="fade-up">
+                                <a href="#down">Contact us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <span><svg viewBox="0 0 752 741" fill="none" xmlns="http://www.w3.org/2000/svg" class="circle-bg-white"><g opacity=".3" filter="url(#filter0_f)"><ellipse rx="175.578" ry="170.103" transform="matrix(.99996 -.00897 .03143 .9995 375.917 370.88)" fill="#EEEBE1"></ellipse></g><defs><filter id="filter0_f" x=".262" y=".854" width="751.309" height="740.052" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend><feGaussianBlur stdDeviation="75" result="effect1_foregroundBlur"></feGaussianBlur></filter></defs></svg></span>
+        </header>
+
+        <section class="banner">
+            <div class="container">
+                <div class="banner-text text-center banner-shadow">
+                    <h1>
+                        <span data-aos="fade-up" data-aos-delay="100" data-aos-once="true" > We have <label>the keys</label></span>
+                        <span data-aos="fade-up" data-aos-delay="200" data-aos-once="true" > from <svg xmlns="http://www.w3.org/2000/svg" width=".55em" height=".38em" viewBox="0 0 6.6 4.6" style="transform: translate(0px, 0px);"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M4.2 0H2.9l1.8 1.8H0v1h4.7L2.9 4.6h1.3l2.4-2.3z"></path></svg><label>the secret</label></span>
+                        <span data-aos="fade-up" data-aos-delay="300" data-aos-once="true" ><label>design universe</label></span>
+                    </h1>
+                </div>
+            </div>
+
+        </section>
+        <!-- ================= strip bar ================= -->
+
+        <div class="text-row" style="overflow: hidden;">
+            <div class="text-row--inner" style="transform: rotate(5.14276deg) scale(1.00404, 1.00404);">
+                <div class="row" style="transform: translate3d(-8.4374%, 0px, 0px);">
+                    <span>Creative partner for ambitious brands</span>
+                    <span>Creative partner for ambitious brands</span>
+                    <span>Creative partner for ambitious brands</span>
+                    <span>Creative partner for ambitious brands</span>
+
+                </div>
+            </div>
+            <div class="text-row--inner reverse" style="transform: rotate(-5.14276deg) scale(1.00404, 1.00404);">
+            </div>
+        </div>
+        <!-- =============== show what you do =============== -->
+        <section class="waht-u-do-sec">
+            <div class="container-fluid">
+                <div class="show-me-text">
+                    <h2>
+                        <span class="show-me" data-aos="fade-up" data-aos-once="true" >
+                       Show me
+                    </span>
+                        <span class="what-do" data-aos="fade-up" data-aos-delay="100" data-aos-once="true" >
+                       What you do
+                    </span>
+                    </h2>
+
+                    <!-- <h2>What you do</h2> -->
+                </div>
+                <div class="row show-me-row">
+                    <div class="col-md-4 design-col">
+                        <a href="#">
+                            <div class="design">
+                                <div class="design-image">
+                                    <img src="images/Zenklub_cover-2.png">
+                                </div>
+                                <div class="design-text">
+                                    <h2 data-aos="fade-up" data-aos-once="true" >Zenklub</h2>
+                                    <p data-aos="fade-up" data-aos-delay="100" data-aos-once="true" >
+                                        <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" style="transform: translate(0px, 0px);"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M14 3.2l-3-3-.1 8.3L2.4 0 0 2.4 8.6 11H.3l3 3H14z"></path></svg>
+                                    </span> Mobile App
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 design-image-2">
+                        <a href="#">
+                            <div class="design">
+                                <div class="design-image ">
+                                    <img src="images/FanTrade_cover-1.png">
+                                </div>
+                                <div class="design-text">
+                                    <h2 data-aos="fade-up" data-aos-once="true" >FanTrade</h2>
+                                    <p data-aos="fade-up" data-aos-delay="100" data-aos-once="true" >
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" style="transform: translate(0px, 0px);"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M14 3.2l-3-3-.1 8.3L2.4 0 0 2.4 8.6 11H.3l3 3H14z"></path></svg>
+                                        </span> Mobile App
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                    <div class="col-md-4 ">
+                        <a href="#">
+                            <div class="design">
+                                <div class="design-image">
+                                    <img src="images/Pocketi_cover-2.png">
+                                </div>
+                                <div class="design-text">
+                                    <h2 data-aos="fade-up" data-aos-once="true" >Pocketi</h2>
+                                    <p data-aos="fade-up" data-aos-delay="100" data-aos-once="true" >
+                                        <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" style="transform: translate(0px, 0px);"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M14 3.2l-3-3-.1 8.3L2.4 0 0 2.4 8.6 11H.3l3 3H14z"></path></svg>
+                                    </span> Mobile App, Web-app
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 design-col">
+                        <a href="#">
+                            <div class="design">
+                                <div class="design-image">
+                                    <img src="images/GN_cover-2.png">
+                                </div>
+                                <div class="design-text">
+                                    <h2 data-aos="fade-up" data-aos-once="true" >Good Neighbour</h2>
+                                    <p data-aos="fade-up" data-aos-delay="100" data-aos-once="true" >
+                                        <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" style="transform: translate(0px, 0px);"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M14 3.2l-3-3-.1 8.3L2.4 0 0 2.4 8.6 11H.3l3 3H14z"></path></svg>
+                                    </span> Mobile App
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 design-image-2">
+                        <a href="#">
+                            <div class="design">
+                                <div class="design-image ">
+                                    <img src="images/CR_cover-2.png">
+                                </div>
+                                <div class="design-text">
+                                    <h2 data-aos="fade-up" data-aos-once="true" >CharityRight</h2>
+                                    <p data-aos="fade-up" data-aos-delay="100" data-aos-once="true" >
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" style="transform: translate(0px, 0px);"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M14 3.2l-3-3-.1 8.3L2.4 0 0 2.4 8.6 11H.3l3 3H14z"></path></svg>
+                                        </span> Website
+                                    </p>
+                                </div>
+                            </div>
+                           
+                        </a>
+
+                    </div>
+                    <div class="col-md-4 design-col">
+                        <a href="#">
+                            <div class="design">
+                                <div class="design-image">
+                                    <img src="images/Chqmate_cover-2.png">
+                                </div>
+                                <div class="design-text">
+                                    <h2 data-aos="fade-up" data-aos-once="true" >Chqmate</h2>
+                                    <p data-aos="fade-up" data-aos-delay="100" data-aos-once="true" >
+                                        <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" style="transform: translate(0px, 0px);"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M14 3.2l-3-3-.1 8.3L2.4 0 0 2.4 8.6 11H.3l3 3H14z"></path></svg>
+                                    </span> Mobile App, Web-app
+                                    </p>
+                                </div>
+                            </div>
+                           
+                        </a>
+                    </div>
+                    <div class="col-md-4 design-col">
+                        <a href="#">
+                            <div class="design">
+                                <div class="design-image">
+                                    <img src="images/MineD_cover-2.png">
+                                </div>
+                                <div class="design-text">
+                                    <h2 data-aos="fade-up" data-aos-once="true" > Mine’D</h2>
+                                    <p data-aos="fade-up" data-aos-delay="100" data-aos-once="true" >
+                                        <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" style="transform: translate(0px, 0px);"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M14 3.2l-3-3-.1 8.3L2.4 0 0 2.4 8.6 11H.3l3 3H14z"></path></svg>
+                                    </span> Mobile App
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 design-image-2">
+                        <a href="#">
+                            <div class="design">
+                                <div class="design-image ">
+                                    <img src="images/GrapheneCa_cover-2.png">
+                                </div>
+                                <div class="design-text">
+                                    <h2 data-aos="fade-up" data-aos-once="true" >GrapheneCA</h2>
+                                    <p data-aos="fade-up" data-aos-delay="100" data-aos-once="true" >
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" style="transform: translate(0px, 0px);"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M14 3.2l-3-3-.1 8.3L2.4 0 0 2.4 8.6 11H.3l3 3H14z"></path></svg>
+                                        </span> Website
+                                    </p>
+                                </div>
+                            </div>
+                            
+                        </a>
+
+                    </div>
+                    <div class="col-md-4 design-col">
+                        <a href="#">
+                            <div class="design">
+                                <div class="design-image">
+                                    <img src="images/Firesale_cover-2.png">
+                                </div>
+                                <div class="design-text">
+                                    <h2 data-aos="fade-up" data-aos-once="true" >Firesale</h2>
+                                    <p data-aos="fade-up" data-aos-delay="100" data-aos-once="true" >
+                                        <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" style="transform: translate(0px, 0px);"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M14 3.2l-3-3-.1 8.3L2.4 0 0 2.4 8.6 11H.3l3 3H14z"></path></svg>
+                                    </span> Mobile App
+                                    </p>
+                                </div>
+                            </div>
+                           
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ============ swiper slider ================ -->
+        <section class="swiper-first-row">
+            <!-- slider 1 -->
+            <div class="swiper-container swiper--top">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <label><img src="images/star-2-services.svg"></label>
+                        <span>Landing Pages</span>
+                    </div>
+                    <div class="swiper-slide">
+                        <label><img src="images/star-1-services.svg"></label>
+                        <p>UX Researches</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <label><img src="images/star-2-services.svg"></label>
+                        <span>Websites</span>
+                    </div>
+                    <div class="swiper-slide">
+                        <label><img src="images/star-1-services.svg"></label>
+                        <p>Art-Direction</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- slider 2 -->
+            <div class="swiper-container swiper--scnd">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <label><img src="images/star-2-services.svg"></label>
+                        <span>Icons</span>
+                    </div>
+                    <div class="swiper-slide">
+                        <label><img src="images/star-1-services.svg"></label>
+                        <p>Illustrations</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <label><img src="images/star-2-services.svg"></label>
+                        <span>Dashboards</span>
+                    </div>
+                    <div class="swiper-slide">
+                        <label><img src="images/star-1-services.svg"></label>
+                        <p>Graphic Design</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- slider 3 -->
+            <div class="swiper-container swiper--thrd">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <label><img src="images/star-2-services.svg"></label>
+                        <span>UX Researches</span>
+                    </div>
+                    <div class="swiper-slide">
+                        <label><img src="images/star-1-services.svg"></label>
+                        <p>Websites</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <label><img src="images/star-2-services.svg"></label>
+                        <span>3D Graphics</span>
+                    </div>
+                    <div class="swiper-slide">
+                        <label><img src="images/star-1-services.svg"></label>
+                        <p>Pitch Decks</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============== about the room ============== -->
+        <section class="about-room-sec">
+            <div class="container-fluid">
+                <div class="about-room-text">
+                    <p data-aos="fade-up" data-aos-once="true" >About</p>
+                    <h6 data-aos="fade-up" data-aos-delay="200" data-aos-once="true" >TheRoom</h6>
+                </div>
+
+
+                <div class="room-para">
+                    <div class="gear">
+                        <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 122.3" class="star-three" style="transform: translate3d(0px, 0px, 0px) rotate(61.7516deg);"><path d="M0 57.6l9-27.8c20.8 7.3 36 13.7 45.4 19C52 25.1 50.7 8.9 50.5 0H79c-.4 12.9-1.9 29.1-4.5 48.6 13.5-6.8 29-13.1 46.4-18.8l9 27.8c-16.6 5.5-33 9.1-49 11 8 6.9 19.3 19.3 33.8 37l-23.6 16.7C83.6 112 74.7 97.9 64.3 80.1c-9.7 18.4-18.2 32.5-25.6 42.1l-23.2-16.7c15.2-18.7 26.1-31 32.6-37C31.3 65.3 15.2 61.7 0 57.6z" fill="#fff"></path></svg>
+                    </span>
+                    </div>
+                    <p>
+                        <span data-aos="fade-up" data-aos-once="true" >We are a design boutique, with a focus on</span>
+                        <span data-aos="fade-up" data-aos-delay="100" data-aos-once="true" >delivering extraordinary creative solutions</span>
+                        <span data-aos="fade-up" data-aos-delay="200" data-aos-once="true" > across digital, brand, and beyond. What </span>
+                        <span data-aos="fade-up" data-aos-delay="300" data-aos-once="true" >do you feel while using your phone? How</span>
+                        <span data-aos="fade-up" data-aos-delay="400" data-aos-once="true" >does your sofa look like? Systems,</span>
+                        <span data-aos="fade-up" data-aos-delay="500" data-aos-once="true" > technologies, products and solutions,</span>
+                        <span data-aos="fade-up" data-aos-delay="600" data-aos-once="true" >you, your experience and satifaction –</span>
+                        <span data-aos="fade-up" data-aos-delay="700" data-aos-once="true" >that’s what UI/UX is about.</span>
+                    </p>
+                    <!-- <div class="gear-2">
+                        <span>
+                        <svg viewBox="0 0 288 278" fill="none" xmlns="http://www.w3.org/2000/svg" class="star-one" style="transform: translate3d(0px, 0px, 0px) rotate(44.4832deg);"><path d="M194.906 4.743l-6.539 78.752 75.564-23.125-51.58 59.87 74.726 25.707-76.919 18.117 45.344 64.72-72.878-30.555-1.358 79.013-40.999-67.556-47.54 63.124 6.538-78.753L23.7 217.182l51.58-59.869L.555 131.606l76.919-18.117-45.344-64.72 72.878 30.554L106.365.311l41 67.556 47.541-63.124z" fill="#FF4016"></path></svg>
+                    </span>
+                    </div> -->
+
+                </div>
+                <div class="room-para">
+                    <p>
+                        <span data-aos="fade-up" data-aos-once="true" >And this is sacral. Work on the project in</span>
+                        <span data-aos="fade-up" data-aos-delay="100" data-aos-once="true" >The Room reminds a creation of a new</span>
+                        <span data-aos="fade-up" data-aos-delay="200" data-aos-once="true" >being, living in the reality of the web</span>
+                        <span data-aos="fade-up" data-aos-delay="300" data-aos-once="true" >universe.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- ================== about values sec =============== -->
+        <section class="about-value-sec">
+            <div class="container-fluid">
+                <div class="about-value-inner">
+                    <div class="about-value-text">
+                        <h6 data-aos="fade-up" data-aos-once="true" >What about</h6>
+                        <h6 data-aos="fade-up" data-aos-delay="200" data-aos-once="true" >our <span>values?</span></h6>
+                    </div>
+                    <div class="row abour-value-row">
+                        <div class="col-md-6 box-col" data-aos="fade-up" data-aos-delay="200" data-aos-once="true" >
+                            <div class="about-box">
+                                <h6>Cooperation</h6>
+                                <p>We are standing on the side of partnership, not just work, and treat clients with respect and care. We value clients business success the most.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 box-col" data-aos="fade-up" data-aos-delay="200" data-aos-once="true" >
+                            <div class="about-box">
+                                <h6>Responsibility</h6>
+                                <p>We know very well what the design is and how much responsibility it requests. Good design can heal - we can bring your idea to life.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 box-col" data-aos="fade-up" data-aos-delay="400" data-aos-once="true" >
+                            <div class="about-box">
+                                <h6>Engagement</h6>
+                                <p>We fully jump into the brief and help business reaching its goals. Own UX methodology allows offering profitable researches.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 box-col" data-aos="fade-up" data-aos-delay="400" data-aos-once="true" >
+                            <div class="about-org">
+                                <a href="#">
+                                    <div class="about-box">
+                                        <h6>Start working <br> with us</h6>
+                                        <div class="about-box-arrow">
+                                            <svg width="59" height="50" viewBox="0 0 110 77" xmlns="http://www.w3.org/2000/svg" style="transform: translate(0px, 0px);"><path fill-rule="evenodd" clip-rule="evenodd" d="M86.846 15.829c-.008.008-2.714-2.636-8.093-7.908L70.674 0H59.707c-6.031 0-10.969.003-10.972.006-.004.004.196.205.443.448.292.285.446.445.437.453-.008.009.977.983 2.931 2.899 1.955 1.915 2.94 2.89 2.932 2.898-.009.009 1.037 1.042 3.11 3.075 2.075 2.034 3.12 3.067 3.112 3.075-.009.009.913.92 2.738 2.71 1.826 1.79 2.747 2.701 2.739 2.71-.009.008.977.982 2.93 2.898 1.955 1.915 2.94 2.89 2.932 2.898-.009.009.947.954 2.841 2.81 2.529 2.48 2.852 2.8 2.835 2.817-.01.01-10.699.02-23.752.02-13.052 0-40.313.005-40.32.012-.007.007-3.299.012-7.315.012s-7.308.006-7.315.013C.006 29.761 0 33.64 0 38.374v8.607h47.841c17.196 0 31.275.009 31.285.02.017.016-.332.362-3.066 3.043-2.048 2.008-3.081 3.029-3.073 3.037.01.008-1.075 1.08-3.226 3.188-2.151 2.109-3.236 3.18-3.227 3.189.008.008-1.072 1.075-3.214 3.175-2.143 2.1-3.223 3.168-3.214 3.176.008.008-1.076 1.08-3.227 3.189-2.151 2.108-3.235 3.18-3.227 3.188.009.008-.806.815-2.417 2.394-2.151 2.11-2.427 2.384-2.41 2.401.01.01 4.965.019 11.01.019h10.993l2.397-2.35c1.59-1.559 2.394-2.355 2.385-2.363-.008-.009 3.784-3.735 11.352-11.153 7.568-7.419 11.36-11.145 11.352-11.153-.009-.009 1.945-1.933 5.837-5.747L110 38.5 98.43 27.158c-7.705-7.553-11.575-11.338-11.584-11.33z" fill="currentColor"></path></svg>
+                                        </div>
+
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- text row revrse -->
+        <section class="text-reverse-sec">
+            <div class="text-row">
+                <div class="text-row--inner reverse">
+                    <div class="row">
+                        <span>Creative partner for ambitious brands</span>
+                        <span>Creative partner for ambitious brands</span>
+                        <span>Creative partner for ambitious brands</span>
+                        <span>Creative partner for ambitious brands</span>
+                    </div>
+                </div>
+                <div class="text-row--inner reverse"></div>
+            </div>
+        </section>
+        <!-- =================== our experties sec ==================== -->
+        <section class="our-experties-sec">
+            <div class="container-fluid">
+                <div class="experties-text">
+                    <h6 data-aos="fade-up" data-aos-once="true" >Our</h6>
+                    <p data-aos="fade-up" data-aos-delay="200" data-aos-once="true" >Expertise</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 startup-col" data-aos="fade-up" data-aos-delay="300" data-aos-once="true" >
+                        <div class="startup">
+                            <h5>Startups</h5>
+                        </div>
+                        <a href="#">
+                            <div class="startup-row">
+                                <span>
+                                FanTrade
+                            </span>
+                                <span>
+                                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.51.056c0 .005-1.688.008-5.048.008H7.414L3.988 3.49A2086.46 2086.46 0 00.562 6.92c0 .002.127.004.281.004.182 0 .282.002.282.008 0 .005.618.008 1.839.008 1.22 0 1.84.002 1.84.008 0 .005.655.008 1.951.008a89.5 89.5 0 011.952.008c0 .005.578.008 1.719.008 1.14 0 1.719.002 1.719.008 0 .005.618.008 1.839.008 1.22 0 1.84.003 1.84.008s.599.008 1.782.008c1.58 0 1.784.001 1.784.012 0 .007-3.337 3.348-7.414 7.426a4821.37 4821.37 0 00-9.695 9.71A457.767 457.767 0 000 26.442c0 .004 1.234 1.242 2.743 2.75l2.743 2.744 9.767-9.767a5667.57 5667.57 0 019.78-9.768c.01 0 .011.22.011 1.928 0 1.28.003 1.928.008 1.928.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.678.008 2.016 0 1.339.003 2.016.008 2.016.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.512.008 1.518 0 1.345.002 1.519.012 1.519.007 0 1.558-1.546 3.446-3.434L32 24.554v-1.498c0-.993-.003-1.498-.008-1.498s-.008-2.372-.008-7.1c0-4.729-.003-7.1-.008-7.1s-.008-1.224-.008-3.655V.048h-7.229c-4.814 0-7.229.003-7.229.008z" fill="#fff"></path></svg>
+                            </span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="startup-row">
+                                <span>
+                                FanTrade
+                            </span>
+                                <span>
+                                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.51.056c0 .005-1.688.008-5.048.008H7.414L3.988 3.49A2086.46 2086.46 0 00.562 6.92c0 .002.127.004.281.004.182 0 .282.002.282.008 0 .005.618.008 1.839.008 1.22 0 1.84.002 1.84.008 0 .005.655.008 1.951.008a89.5 89.5 0 011.952.008c0 .005.578.008 1.719.008 1.14 0 1.719.002 1.719.008 0 .005.618.008 1.839.008 1.22 0 1.84.003 1.84.008s.599.008 1.782.008c1.58 0 1.784.001 1.784.012 0 .007-3.337 3.348-7.414 7.426a4821.37 4821.37 0 00-9.695 9.71A457.767 457.767 0 000 26.442c0 .004 1.234 1.242 2.743 2.75l2.743 2.744 9.767-9.767a5667.57 5667.57 0 019.78-9.768c.01 0 .011.22.011 1.928 0 1.28.003 1.928.008 1.928.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.678.008 2.016 0 1.339.003 2.016.008 2.016.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.512.008 1.518 0 1.345.002 1.519.012 1.519.007 0 1.558-1.546 3.446-3.434L32 24.554v-1.498c0-.993-.003-1.498-.008-1.498s-.008-2.372-.008-7.1c0-4.729-.003-7.1-.008-7.1s-.008-1.224-.008-3.655V.048h-7.229c-4.814 0-7.229.003-7.229.008z" fill="#fff"></path></svg>
+                            </span>
+                            </div>
+                        </a>
+
+                    </div>
+                    <div class="col-md-4 startup-col" data-aos="fade-up" data-aos-delay="300" data-aos-once="true" >
+                        <div class="startup">
+                            <h5>Fintech</h5>
+                        </div>
+                        <a href="#">
+                            <div class="startup-row">
+                                <span>
+                                FanTrade
+                            </span>
+                                <span>
+                                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.51.056c0 .005-1.688.008-5.048.008H7.414L3.988 3.49A2086.46 2086.46 0 00.562 6.92c0 .002.127.004.281.004.182 0 .282.002.282.008 0 .005.618.008 1.839.008 1.22 0 1.84.002 1.84.008 0 .005.655.008 1.951.008a89.5 89.5 0 011.952.008c0 .005.578.008 1.719.008 1.14 0 1.719.002 1.719.008 0 .005.618.008 1.839.008 1.22 0 1.84.003 1.84.008s.599.008 1.782.008c1.58 0 1.784.001 1.784.012 0 .007-3.337 3.348-7.414 7.426a4821.37 4821.37 0 00-9.695 9.71A457.767 457.767 0 000 26.442c0 .004 1.234 1.242 2.743 2.75l2.743 2.744 9.767-9.767a5667.57 5667.57 0 019.78-9.768c.01 0 .011.22.011 1.928 0 1.28.003 1.928.008 1.928.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.678.008 2.016 0 1.339.003 2.016.008 2.016.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.512.008 1.518 0 1.345.002 1.519.012 1.519.007 0 1.558-1.546 3.446-3.434L32 24.554v-1.498c0-.993-.003-1.498-.008-1.498s-.008-2.372-.008-7.1c0-4.729-.003-7.1-.008-7.1s-.008-1.224-.008-3.655V.048h-7.229c-4.814 0-7.229.003-7.229.008z" fill="#fff"></path></svg>
+                            </span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="startup-row">
+                                <span>
+                                FanTrade
+                            </span>
+                                <span>
+                                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.51.056c0 .005-1.688.008-5.048.008H7.414L3.988 3.49A2086.46 2086.46 0 00.562 6.92c0 .002.127.004.281.004.182 0 .282.002.282.008 0 .005.618.008 1.839.008 1.22 0 1.84.002 1.84.008 0 .005.655.008 1.951.008a89.5 89.5 0 011.952.008c0 .005.578.008 1.719.008 1.14 0 1.719.002 1.719.008 0 .005.618.008 1.839.008 1.22 0 1.84.003 1.84.008s.599.008 1.782.008c1.58 0 1.784.001 1.784.012 0 .007-3.337 3.348-7.414 7.426a4821.37 4821.37 0 00-9.695 9.71A457.767 457.767 0 000 26.442c0 .004 1.234 1.242 2.743 2.75l2.743 2.744 9.767-9.767a5667.57 5667.57 0 019.78-9.768c.01 0 .011.22.011 1.928 0 1.28.003 1.928.008 1.928.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.678.008 2.016 0 1.339.003 2.016.008 2.016.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.512.008 1.518 0 1.345.002 1.519.012 1.519.007 0 1.558-1.546 3.446-3.434L32 24.554v-1.498c0-.993-.003-1.498-.008-1.498s-.008-2.372-.008-7.1c0-4.729-.003-7.1-.008-7.1s-.008-1.224-.008-3.655V.048h-7.229c-4.814 0-7.229.003-7.229.008z" fill="#fff"></path></svg>
+                            </span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 startup-col" data-aos="fade-up" data-aos-delay="300" data-aos-once="true" >
+                        <div class="startup">
+                            <h5>Wellbeing</h5>
+                        </div>
+                        <a href="#">
+                            <div class="startup-row">
+                                <span>
+                                FanTrade
+                            </span>
+                                <span>
+                                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.51.056c0 .005-1.688.008-5.048.008H7.414L3.988 3.49A2086.46 2086.46 0 00.562 6.92c0 .002.127.004.281.004.182 0 .282.002.282.008 0 .005.618.008 1.839.008 1.22 0 1.84.002 1.84.008 0 .005.655.008 1.951.008a89.5 89.5 0 011.952.008c0 .005.578.008 1.719.008 1.14 0 1.719.002 1.719.008 0 .005.618.008 1.839.008 1.22 0 1.84.003 1.84.008s.599.008 1.782.008c1.58 0 1.784.001 1.784.012 0 .007-3.337 3.348-7.414 7.426a4821.37 4821.37 0 00-9.695 9.71A457.767 457.767 0 000 26.442c0 .004 1.234 1.242 2.743 2.75l2.743 2.744 9.767-9.767a5667.57 5667.57 0 019.78-9.768c.01 0 .011.22.011 1.928 0 1.28.003 1.928.008 1.928.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.678.008 2.016 0 1.339.003 2.016.008 2.016.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.512.008 1.518 0 1.345.002 1.519.012 1.519.007 0 1.558-1.546 3.446-3.434L32 24.554v-1.498c0-.993-.003-1.498-.008-1.498s-.008-2.372-.008-7.1c0-4.729-.003-7.1-.008-7.1s-.008-1.224-.008-3.655V.048h-7.229c-4.814 0-7.229.003-7.229.008z" fill="#fff"></path></svg>
+                            </span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="startup-row">
+                                <span>
+                                FanTrade
+                            </span>
+                                <span>
+                                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.51.056c0 .005-1.688.008-5.048.008H7.414L3.988 3.49A2086.46 2086.46 0 00.562 6.92c0 .002.127.004.281.004.182 0 .282.002.282.008 0 .005.618.008 1.839.008 1.22 0 1.84.002 1.84.008 0 .005.655.008 1.951.008a89.5 89.5 0 011.952.008c0 .005.578.008 1.719.008 1.14 0 1.719.002 1.719.008 0 .005.618.008 1.839.008 1.22 0 1.84.003 1.84.008s.599.008 1.782.008c1.58 0 1.784.001 1.784.012 0 .007-3.337 3.348-7.414 7.426a4821.37 4821.37 0 00-9.695 9.71A457.767 457.767 0 000 26.442c0 .004 1.234 1.242 2.743 2.75l2.743 2.744 9.767-9.767a5667.57 5667.57 0 019.78-9.768c.01 0 .011.22.011 1.928 0 1.28.003 1.928.008 1.928.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.678.008 2.016 0 1.339.003 2.016.008 2.016.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.512.008 1.518 0 1.345.002 1.519.012 1.519.007 0 1.558-1.546 3.446-3.434L32 24.554v-1.498c0-.993-.003-1.498-.008-1.498s-.008-2.372-.008-7.1c0-4.729-.003-7.1-.008-7.1s-.008-1.224-.008-3.655V.048h-7.229c-4.814 0-7.229.003-7.229.008z" fill="#fff"></path></svg>
+                            </span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 startup-col" data-aos="fade-up" data-aos-delay="400" data-aos-once="true" >
+                        <div class="startup">
+                            <h5>Social Apps</h5>
+                        </div>
+                        <a href="#">
+                            <div class="startup-row">
+                                <span>
+                                FanTrade
+                            </span>
+                                <span>
+                                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.51.056c0 .005-1.688.008-5.048.008H7.414L3.988 3.49A2086.46 2086.46 0 00.562 6.92c0 .002.127.004.281.004.182 0 .282.002.282.008 0 .005.618.008 1.839.008 1.22 0 1.84.002 1.84.008 0 .005.655.008 1.951.008a89.5 89.5 0 011.952.008c0 .005.578.008 1.719.008 1.14 0 1.719.002 1.719.008 0 .005.618.008 1.839.008 1.22 0 1.84.003 1.84.008s.599.008 1.782.008c1.58 0 1.784.001 1.784.012 0 .007-3.337 3.348-7.414 7.426a4821.37 4821.37 0 00-9.695 9.71A457.767 457.767 0 000 26.442c0 .004 1.234 1.242 2.743 2.75l2.743 2.744 9.767-9.767a5667.57 5667.57 0 019.78-9.768c.01 0 .011.22.011 1.928 0 1.28.003 1.928.008 1.928.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.678.008 2.016 0 1.339.003 2.016.008 2.016.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.512.008 1.518 0 1.345.002 1.519.012 1.519.007 0 1.558-1.546 3.446-3.434L32 24.554v-1.498c0-.993-.003-1.498-.008-1.498s-.008-2.372-.008-7.1c0-4.729-.003-7.1-.008-7.1s-.008-1.224-.008-3.655V.048h-7.229c-4.814 0-7.229.003-7.229.008z" fill="#fff"></path></svg>
+                            </span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="startup-row">
+                                <span>
+                                FanTrade
+                            </span>
+                                <span>
+                                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.51.056c0 .005-1.688.008-5.048.008H7.414L3.988 3.49A2086.46 2086.46 0 00.562 6.92c0 .002.127.004.281.004.182 0 .282.002.282.008 0 .005.618.008 1.839.008 1.22 0 1.84.002 1.84.008 0 .005.655.008 1.951.008a89.5 89.5 0 011.952.008c0 .005.578.008 1.719.008 1.14 0 1.719.002 1.719.008 0 .005.618.008 1.839.008 1.22 0 1.84.003 1.84.008s.599.008 1.782.008c1.58 0 1.784.001 1.784.012 0 .007-3.337 3.348-7.414 7.426a4821.37 4821.37 0 00-9.695 9.71A457.767 457.767 0 000 26.442c0 .004 1.234 1.242 2.743 2.75l2.743 2.744 9.767-9.767a5667.57 5667.57 0 019.78-9.768c.01 0 .011.22.011 1.928 0 1.28.003 1.928.008 1.928.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.678.008 2.016 0 1.339.003 2.016.008 2.016.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.512.008 1.518 0 1.345.002 1.519.012 1.519.007 0 1.558-1.546 3.446-3.434L32 24.554v-1.498c0-.993-.003-1.498-.008-1.498s-.008-2.372-.008-7.1c0-4.729-.003-7.1-.008-7.1s-.008-1.224-.008-3.655V.048h-7.229c-4.814 0-7.229.003-7.229.008z" fill="#fff"></path></svg>
+                            </span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 startup-col" data-aos="fade-up" data-aos-delay="400" data-aos-once="true" >
+                        <div class="startup startup-2">
+                            <h5>B2B solutions</h5>
+                        </div>
+                        <a href="#">
+                            <div class="startup-row">
+                                <span>
+                                FanTrade
+                            </span>
+                                <span>
+                                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.51.056c0 .005-1.688.008-5.048.008H7.414L3.988 3.49A2086.46 2086.46 0 00.562 6.92c0 .002.127.004.281.004.182 0 .282.002.282.008 0 .005.618.008 1.839.008 1.22 0 1.84.002 1.84.008 0 .005.655.008 1.951.008a89.5 89.5 0 011.952.008c0 .005.578.008 1.719.008 1.14 0 1.719.002 1.719.008 0 .005.618.008 1.839.008 1.22 0 1.84.003 1.84.008s.599.008 1.782.008c1.58 0 1.784.001 1.784.012 0 .007-3.337 3.348-7.414 7.426a4821.37 4821.37 0 00-9.695 9.71A457.767 457.767 0 000 26.442c0 .004 1.234 1.242 2.743 2.75l2.743 2.744 9.767-9.767a5667.57 5667.57 0 019.78-9.768c.01 0 .011.22.011 1.928 0 1.28.003 1.928.008 1.928.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.678.008 2.016 0 1.339.003 2.016.008 2.016.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.512.008 1.518 0 1.345.002 1.519.012 1.519.007 0 1.558-1.546 3.446-3.434L32 24.554v-1.498c0-.993-.003-1.498-.008-1.498s-.008-2.372-.008-7.1c0-4.729-.003-7.1-.008-7.1s-.008-1.224-.008-3.655V.048h-7.229c-4.814 0-7.229.003-7.229.008z" fill="#fff"></path></svg>
+                            </span>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="startup-row">
+                                <span>
+                                FanTrade
+                            </span>
+                                <span>
+                                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.51.056c0 .005-1.688.008-5.048.008H7.414L3.988 3.49A2086.46 2086.46 0 00.562 6.92c0 .002.127.004.281.004.182 0 .282.002.282.008 0 .005.618.008 1.839.008 1.22 0 1.84.002 1.84.008 0 .005.655.008 1.951.008a89.5 89.5 0 011.952.008c0 .005.578.008 1.719.008 1.14 0 1.719.002 1.719.008 0 .005.618.008 1.839.008 1.22 0 1.84.003 1.84.008s.599.008 1.782.008c1.58 0 1.784.001 1.784.012 0 .007-3.337 3.348-7.414 7.426a4821.37 4821.37 0 00-9.695 9.71A457.767 457.767 0 000 26.442c0 .004 1.234 1.242 2.743 2.75l2.743 2.744 9.767-9.767a5667.57 5667.57 0 019.78-9.768c.01 0 .011.22.011 1.928 0 1.28.003 1.928.008 1.928.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.678.008 2.016 0 1.339.003 2.016.008 2.016.006 0 .008.68.008 2.024 0 1.344.003 2.024.008 2.024.006 0 .008.512.008 1.518 0 1.345.002 1.519.012 1.519.007 0 1.558-1.546 3.446-3.434L32 24.554v-1.498c0-.993-.003-1.498-.008-1.498s-.008-2.372-.008-7.1c0-4.729-.003-7.1-.008-7.1s-.008-1.224-.008-3.655V.048h-7.229c-4.814 0-7.229.003-7.229.008z" fill="#fff"></path></svg>
+                            </span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--=========== double inverse row ==============-->
+        <section>
+            <div class="text-row complex">
+                <div class="text-row--inner">
+                    <div class="row">
+                        <span>Creative partner for ambitious brands</span>
+                        <span>Creative partner for ambitious brands</span>
+                        <span>Creative partner for ambitious brands</span>
+                        <span>Creative partner for ambitious brands</span>
+                    </div>
+                </div>
+                <div class="text-row--inner reverse">
+                    <div class="row">
+                        <span>Creative partner for ambitious brands</span>
+                        <span>Creative partner for ambitious brands</span>
+                        <span>Creative partner for ambitious brands</span>
+                        <span>Creative partner for ambitious brands</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ================== the room sec ================= -->
+        <section class="the-room-sec">
+            <div class="container-fluid">
+                <div class="room-text">
+                    <h6 data-aos="fade-up" data-aos-once="true" >TheRoom</h6>
+                    <p data-aos="fade-up" data-aos-delay="200" data-aos-once="true" >Approach</p>
+                </div>
+                <div class="row room-row">
+                    <div class="col-lg-6 circulr-col">
+                        <div class="outCircle outCircle-sm">
+                            <p>
+                                <span>WE DO WHAT WE</span>
+                                <span class="sc">WANT TO DO</span>
+                            </p>
+                          
+                        
+                            <div class="rotate">
+                            <div class="inner-circule"></div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-lg-6 room-text-col">
+                        <div class="room-para">
+                            <p>
+                                <span data-aos="fade-up" data-aos-once="true" >We don’t need a</span>
+                                <span data-aos="fade-up" data-aos-delay="200" data-aos-once="true" >complicated system with</span>
+                                <span data-aos="fade-up" data-aos-delay="300" data-aos-once="true" >junior, middle and senior</span>
+                                <span data-aos="fade-up" data-aos-delay="400" data-aos-once="true" > designers – all designers</span>
+                                <span data-aos="fade-up" data-aos-delay="500" data-aos-once="true" >in our team are the best as</span>
+                                <span data-aos="fade-up" data-aos-delay="600" data-aos-once="true" >only the most professional</span>
+                                <span data-aos="fade-up" data-aos-delay="700" data-aos-once="true" >specialists can enter our</span>
+                                <span data-aos="fade-up" data-aos-delay="800" data-aos-once="true" > design universe</span>
+                            </p>
+                            <p>
+                                <span data-aos="fade-up" data-aos-delay="1000" data-aos-once="true" >We treat each project with</span>
+                                <span data-aos="fade-up" data-aos-delay="1200" data-aos-once="true" >care and respect,</span>
+                                <span data-aos="fade-up" data-aos-delay="1400" data-aos-once="true" >believing that every</span>
+                                <span data-aos="fade-up" data-aos-delay="1600" data-aos-once="true" >business has a potential to</span>
+                                <span data-aos="fade-up" data-aos-delay="1800" data-aos-once="true" >grow. All the team pays</span>
+                                <span data-aos="fade-up" data-aos-delay="2000" data-aos-once="true" >extra attention to the</span>
+                                <span data-aos="fade-up" data-aos-delay="2200" data-aos-once="true" >effectively, saving perfect</span>
+                                <span data-aos="fade-up" data-aos-delay="2400" data-aos-once="true" >quality. It allows to</span>
+                                <span data-aos="fade-up" data-aos-delay="2600" data-aos-once="true" >completing the work fast</span>
+                                <span data-aos="fade-up" data-aos-delay="2800" data-aos-once="true" >and with the best quality!</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="text-row">
+                <div class="text-row--inner">
+                    <div class="row">
+
+
+                        <span>Creative partner for ambitious brands</span>
+                        <span>Creative partner for ambitious brands</span>
+                        <span>Creative partner for ambitious brands</span>
+                        <span>Creative partner for ambitious brands</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =================== our blog sec =================== -->
+        <section class="our-blog-sec">
+            <div class="container-fluid">
+                <div class="blog-heading">
+                    <h6 data-aos="fade-up" data-aos-once="true" >
+                        Our <span>Blog</span>
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="#">
+                            <div class="blog-inner-sec">
+                                <div class="blog-img">
+                                    <img src="images/Article_1-750x808.png">
+                                </div>
+                                <div class="blog-inner-text">
+                                    <h5 data-aos="fade-up" data-aos-once="true" >4 Ways to Win a Design Award</h5>
+                                    <p data-aos="fade-up" data-aos-delay="200" data-aos-once="true" >
+                                        <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" style="transform: translate(0px, 0px);"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M14 3.2l-3-3-.1 8.3L2.4 0 0 2.4 8.6 11H.3l3 3H14z"></path></svg>
+                                    </span> Read on Medium
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                    <div class="col-md-6">
+                        <a href="#">
+                            <div class="blog-inner-sec">
+                                <div class="blog-img">
+                                    <img src="images/Article_2-750x851.png">
+                                </div>
+                                <div class="blog-inner-text">
+                                    <h5 data-aos="fade-up" data-aos-once="true" >4 Ways to Win a Design Award</h5>
+                                    <p data-aos="fade-up" data-aos-delay="200" data-aos-once="true" >
+                                        <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" style="transform: translate(0px, 0px);"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M14 3.2l-3-3-.1 8.3L2.4 0 0 2.4 8.6 11H.3l3 3H14z"></path></svg>
+                                    </span> Read on Medium
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="#">
+                            <div class="blog-inner-sec">
+                                <div class="blog-img">
+                                    <img src="images/Article_3-1-750x750.png">
+                                </div>
+                                <div class="blog-inner-text">
+                                    <h5 data-aos="fade-up" data-aos-once="true" >4 Ways to Win a Design Award</h5>
+                                    <p data-aos="fade-up" data-aos-delay="200" data-aos-once="true" >
+                                        <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" style="transform: translate(0px, 0px);"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M14 3.2l-3-3-.1 8.3L2.4 0 0 2.4 8.6 11H.3l3 3H14z"></path></svg>
+                                    </span> Read on Medium
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="#">
+                            <div class="blog-inner-sec">
+                                <div class="blog-img">
+                                    <img src="images/Article_4-750x660.png">
+                                </div>
+                                <div class="blog-inner-text">
+                                    <h5 data-aos="fade-up" data-aos-once="true" >4 Ways to Win a Design Award</h5>
+                                    <p data-aos="fade-up" data-aos-delay="200" data-aos-once="true" >
+                                        <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" style="transform: translate(0px, 0px);"><path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor" d="M14 3.2l-3-3-.1 8.3L2.4 0 0 2.4 8.6 11H.3l3 3H14z"></path></svg>
+                                    </span> Read on Medium
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="text-row complex">
+                <div class="text-row--inner">
+                    <div class="row">
+                        <span>Creative partner for ambitious brands</span>
+                        <span>Creative partner for ambitious brands</span>
+                        <span>Creative partner for ambitious brands</span>
+                        <span>Creative partner for ambitious brands</span>
+                    </div>
+                </div>
+                <div class="text-row--inner reverse">
+                    <div class="row">
+                        <span>Creative partner for ambitious brands</span>
+                        <span>Creative partner for ambitious brands</span>
+                        <span>Creative partner for ambitious brands</span>
+                        <span>Creative partner for ambitious brands</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+       <!-- ============= stay in know sec ================== -->
+        <section class="stay-sec" id="down">
+            <div class="container-fluid">
+                <div class="saty-heading">
+                    <span><img src="images/logo-form.svg"></span>
+                    <span>  <h6>Stay in <label>the know</label></h6></span>
+                </div>
+                <div class="stay-form">
+                    <form action="action.php" method="POST">
+                    <div class="row">
+                        <div class="col-md-6">
+                                <input type="text" placeholder="Name" required>
+                        </div>
+                        <div class="col-md-6">
+                                <input type="text" placeholder="Email Address" required>
+                            </div>
+                            <div class="col-md-12 project-desc">
+                                <input type="text" placeholder="Project description" required>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit">Send Request</button>
+                            </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- footer -->
+        <footer>
+            <div class="footer">
+                <div class="container-fluid">
+                    <div class="footer-logo">
+                        <a href="#">
+                            <svg viewBox="0 0 190 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.518 8.095v19.463h-8.66V8.095H0v-6.68h26.317v6.7h-8.799v-.02zm22.557-.409a9.517 9.517 0 013.542-.657c2.4 0 4.222.638 5.423 1.931 1.2 1.294 1.8 3.148 1.8 5.581V27.5h-7.824V15.43c0-.849-.22-1.544-.68-2.066-.46-.521-1.1-.772-1.941-.772-.96 0-1.761.309-2.362.908-.6.598-.9 1.351-.9 2.24V27.5h-7.824V0h7.824v9.56c.82-.812 1.801-1.43 2.942-1.874zm33.09 1.934c1.996 1.72 2.993 4.348 2.993 7.885V18.8H60.634c0 1.45.34 2.532.998 3.266.658.735 1.716 1.102 3.152 1.102 1.297 0 2.275-.27 2.874-.792.618-.522.918-1.237.918-2.126h7.562c0 2.435-.957 4.329-2.853 5.701-1.916 1.372-4.69 2.049-8.34 2.049-3.832 0-6.825-.87-8.94-2.59-2.115-1.74-3.173-4.349-3.173-7.866 0-3.44 1.038-6.05 3.093-7.808 2.055-1.779 4.909-2.648 8.54-2.648 3.811-.058 6.705.811 8.7 2.532zm-12.471 5.605h7.602c0-1.044-.299-1.856-.917-2.474-.619-.6-1.477-.909-2.575-.909-2.454.02-3.83 1.14-4.11 3.383zm42.66-1.455c-.897 1.297-2.172 2.246-3.865 2.846l5.976 10.942h-9.702l-4.78-9.548h-3.188v9.548h-8.647V1.414h16.476c1.932 0 3.586.368 4.941 1.085 1.354.716 2.39 1.704 3.087 2.924a8.026 8.026 0 011.036 4.008c0 1.588-.438 3.04-1.334 4.338zm-8.168-5.714c-.479-.464-1.036-.677-1.714-.677h-5.677V12.2h5.677c.678 0 1.255-.233 1.714-.697.478-.465.697-1.046.697-1.724 0-.678-.22-1.259-.697-1.724zm30.494 1.658c-2.077-1.777-4.933-2.665-8.568-2.665s-6.491.888-8.548 2.646c-2.057 1.776-3.095 4.383-3.095 7.802 0 3.437 1.038 6.044 3.095 7.821 2.057 1.777 4.913 2.646 8.548 2.646s6.491-.889 8.568-2.665c2.077-1.777 3.115-4.384 3.115-7.802 0-3.419-1.038-6.006-3.115-7.783zm-5.453 13.538h-6.191l1.618-5.775c-.959-.502-1.618-1.487-1.618-2.626 0-1.661 1.378-2.994 3.096-2.994 1.717 0 3.095 1.333 3.095 2.994 0 1.14-.659 2.124-1.617 2.626l1.617 5.775zm30.171-13.521c-2.077-1.775-4.933-2.663-8.567-2.663-3.635 0-6.491.888-8.548 2.663-2.057 1.775-3.095 4.36-3.095 7.795 0 3.434 1.038 6.039 3.095 7.814 2.057 1.775 4.913 2.643 8.548 2.643 3.634 0 6.49-.887 8.567-2.662s3.116-4.38 3.116-7.795-1.039-6-3.116-7.795zm-5.452 13.487h-6.191l1.618-5.75a2.999 2.999 0 01-1.618-2.643c0-1.66 1.378-2.991 3.096-2.991 1.717 0 3.095 1.331 3.095 2.99 0 1.139-.659 2.123-1.617 2.644l1.617 5.75zm43.298-14.292c1.177 1.296 1.755 3.153 1.755 5.572V27.48h-7.796V15.407c0-.851-.219-1.548-.637-2.07-.439-.522-1.037-.774-1.815-.774-.917 0-1.655.31-2.233.91-.578.6-.857 1.354-.857 2.244v11.782h-7.795V15.407c0-.851-.22-1.548-.638-2.07-.439-.522-1.037-.774-1.815-.774-.917 0-1.654.31-2.233.91-.578.6-.857 1.354-.857 2.244v11.782h-7.815V7.436h6.38l.518 2.999c.778-1.064 1.814-1.896 3.11-2.535a9.347 9.347 0 014.087-.928c3.11 0 5.184 1.16 6.261 3.463.817-1.064 1.854-1.896 3.11-2.535a8.902 8.902 0 013.967-.928c2.353 0 4.127.657 5.303 1.954z" fill="currentColor"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="row footer-row">
+                        <div class="col-md-6">
+                            <div class="social-icon">
+                                <a href="#">
+                                    <svg width="28" height="28" xmlns="http://www.w3.org/2000/svg"><path d="M4.065 4.121C6.812 1.374 10.124 0 14 0c3.876 0 7.17 1.374 9.879 4.121C26.626 6.831 28 10.124 28 14c0 3.876-1.374 7.188-4.121 9.936C21.169 26.646 17.876 28 14 28c-3.876 0-7.188-1.355-9.935-4.064C1.355 21.188 0 17.876 0 14c0-3.876 1.355-7.17 4.065-9.879zm19.193 2.314c-.226.302-.527.64-.903 1.017-.339.376-1.054.96-2.145 1.75a16.712 16.712 0 01-3.613 1.975c.338.753.677 1.543 1.016 2.371 2.747-.376 5.532-.263 8.355.34-.038-2.786-.941-5.27-2.71-7.453zm-1.355-1.354a11.403 11.403 0 00-5.024-2.654 11.69 11.69 0 00-5.702-.056 54.167 54.167 0 014.46 7 14.1 14.1 0 003.444-1.75c1.053-.715 1.73-1.242 2.032-1.58.339-.377.602-.697.79-.96zM8.92 3.218A11.977 11.977 0 005.871 5.25a12.35 12.35 0 00-2.315 2.879 10.766 10.766 0 00-1.241 3.444c3.537.037 7.207-.452 11.008-1.468a63.27 63.27 0 00-4.404-6.887zM2.032 14c0 3.086 1.035 5.758 3.105 8.016.64-1.129 1.468-2.22 2.484-3.274a19.48 19.48 0 013.556-2.88c1.355-.865 2.729-1.486 4.121-1.862a16.515 16.515 0 00-.96-2.032c-4.064 1.204-8.166 1.769-12.306 1.693V14zm4.63 9.427a11.366 11.366 0 005.87 2.484c2.183.264 4.234-.037 6.154-.903-.49-2.898-1.337-5.909-2.54-9.032-2.296.752-4.291 1.844-5.985 3.274-1.656 1.392-2.822 2.785-3.5 4.177zm14 .509c2.897-1.957 4.61-4.63 5.136-8.017-2.37-.752-4.854-.922-7.451-.508 1.091 3.011 1.863 5.852 2.314 8.525z" fill="currentColor"></path></svg>
+                                </a>
+                                <a href="#">
+                                    <svg width="28" height="22" xmlns="http://www.w3.org/2000/svg"><path d="M3.355 4.469c0-.344-.135-.65-.405-.917L.347.458V0h8.1l6.305 13.635L20.248 0H28v.458l-2.256 2.12c-.193.153-.27.363-.232.63v15.584c-.038.267.039.477.232.63l2.198 2.12V22H16.95v-.458l2.257-2.177c.154-.153.231-.363.231-.63V6.13L13.19 21.943h-.868L4.975 6.13v10.6c-.038.457.097.858.405 1.202l2.95 3.552v.459H0v-.459l2.95-3.552c.348-.343.483-.744.405-1.203V4.47z" fill="currentColor"></path></svg>
+                                </a>
+                                <a href="#">
+                                    <svg width="28" height="28" xmlns="http://www.w3.org/2000/svg"><path d="M8.875 8.938C10.292 7.52 12 6.812 14 6.812s3.688.709 5.063 2.125C20.479 10.313 21.188 12 21.188 14c0 2-.709 3.708-2.125 5.125C17.688 20.5 16 21.188 14 21.188c-2 0-3.708-.688-5.125-2.063C7.5 17.708 6.812 16 6.812 14s.688-3.688 2.063-5.063zm1.813 8.374c.916.917 2.02 1.375 3.312 1.375 1.292 0 2.396-.458 3.313-1.375.916-.916 1.375-2.02 1.375-3.312 0-1.292-.459-2.396-1.375-3.313-.917-.916-2.021-1.374-3.313-1.374-1.292 0-2.396.458-3.313 1.374-.916.917-1.374 2.021-1.374 3.313 0 1.292.458 2.396 1.374 3.313zM22.624 5.376c.333.292.5.667.5 1.125 0 .458-.167.854-.5 1.188-.292.333-.667.5-1.125.5-.458 0-.854-.167-1.188-.5-.333-.334-.5-.73-.5-1.188 0-.458.167-.833.5-1.125.334-.333.73-.5 1.188-.5.458 0 .833.167 1.125.5zm5.313 2.875C27.979 9.375 28 11.292 28 14s-.02 4.625-.063 5.75c-.125 2.542-.895 4.52-2.312 5.938-1.375 1.375-3.333 2.104-5.875 2.187-1.125.083-3.042.125-5.75.125s-4.625-.042-5.75-.125c-2.542-.125-4.5-.875-5.875-2.25a6.03 6.03 0 01-1.313-1.75 10.263 10.263 0 01-.75-1.938c-.124-.625-.187-1.354-.187-2.187C.042 18.625 0 16.708 0 14s.042-4.646.125-5.813C.25 5.688 1 3.75 2.375 2.375 3.75.958 5.708.187 8.25.062 9.375.021 11.292 0 14 0s4.625.02 5.75.063c2.542.124 4.5.895 5.875 2.312 1.417 1.375 2.188 3.333 2.313 5.875zm-3 14c.125-.333.229-.75.312-1.25.083-.542.146-1.167.188-1.875.041-.75.062-1.354.062-1.813v-6.626c0-.458-.02-1.041-.063-1.75a17.704 17.704 0 00-.187-1.874c-.083-.542-.188-.98-.313-1.313-.5-1.292-1.395-2.188-2.687-2.688-.333-.124-.77-.229-1.313-.312-.5-.083-1.125-.146-1.875-.188a30.883 30.883 0 00-1.75-.062h-6.625a34.2 34.2 0 00-1.812.063A20.32 20.32 0 007 2.75a6.77 6.77 0 00-1.25.313c-1.292.5-2.188 1.395-2.688 2.687-.124.333-.229.77-.312 1.313-.083.5-.146 1.125-.188 1.875a30.884 30.884 0 00-.062 1.75v7.5c.042.625.083 1.166.125 1.625a16.566 16.566 0 00.438 2.437c.541 1.292 1.437 2.188 2.687 2.688.333.125.75.229 1.25.312.542.083 1.167.146 1.875.188.75.041 1.333.062 1.75.062h6.688c.458 0 1.041-.02 1.75-.063.75-.041 1.375-.104 1.875-.187.541-.083.979-.188 1.312-.313 1.292-.541 2.188-1.437 2.688-2.687z" fill="currentColor"></path></svg>
+                                </a>
+                                <a href="#">
+                                    <svg width="28" height="28" xmlns="http://www.w3.org/2000/svg"><path d="M6.25 28H.437V9.312H6.25V28zM3.375 6.75c-.917 0-1.708-.333-2.375-1S0 4.292 0 3.375.333 1.667 1 1s1.458-1 2.375-1A3.17 3.17 0 015 .438c.542.291.958.708 1.25 1.25.333.5.5 1.062.5 1.687 0 .583-.167 1.146-.5 1.688-.292.5-.708.916-1.25 1.25a3.17 3.17 0 01-1.625.437zM28 28h-5.813v-9.125c0-.708-.02-1.27-.062-1.688a7.427 7.427 0 00-.313-1.5c-.166-.583-.479-1.02-.937-1.312-.417-.292-.98-.438-1.688-.438-1.375 0-2.312.438-2.812 1.313-.458.875-.688 2.042-.688 3.5V28H9.875V9.312H15.5v2.563h.063c.416-.833 1.104-1.542 2.062-2.125.958-.625 2.104-.938 3.438-.938 1.416 0 2.583.23 3.5.688.958.417 1.666 1.063 2.125 1.938.5.833.833 1.75 1 2.75.208 1 .312 2.187.312 3.562V28z" fill="currentColor"></path></svg>
+                                </a>
+                                <a href="#">
+                                    <svg width="22" height="28" xmlns="http://www.w3.org/2000/svg"><path d="M11.887 0c2.661 0 4.958.859 6.89 2.576 1.97 1.717 2.953 3.939 2.953 6.664 0 1.344-.182 2.65-.546 3.92a13.078 13.078 0 01-1.477 3.528 7.19 7.19 0 01-2.68 2.576c-1.093.635-2.333.952-3.718.952-.73 0-1.459-.168-2.188-.504-.73-.373-1.258-.877-1.586-1.512-.11.448-.273 1.083-.492 1.904-.182.821-.31 1.363-.383 1.624-.036.224-.146.616-.328 1.176-.146.56-.292.97-.437 1.232-.11.224-.292.56-.547 1.008a9.17 9.17 0 01-.766 1.288c-.255.41-.583.896-.984 1.456-.11.075-.183.112-.22.112l-.163-.168c-.146-1.792-.219-2.856-.219-3.192 0-1.008.11-2.147.328-3.416.255-1.307.62-2.93 1.094-4.872.51-1.941.802-3.08.875-3.416-.365-.71-.547-1.661-.547-2.856 0-1.792.675-2.987 2.024-3.584 1.093-.485 1.968-.317 2.625.504.328.448.492 1.008.492 1.68 0 .71-.237 1.773-.711 3.192-.474 1.381-.711 2.427-.711 3.136 0 .71.237 1.307.71 1.792a2.65 2.65 0 001.805.672c.875 0 1.66-.299 2.352-.896.693-.597 1.203-1.363 1.531-2.296.365-.933.62-1.848.766-2.744.182-.933.273-1.81.273-2.632 0-1.941-.601-3.453-1.804-4.536-1.167-1.083-2.716-1.624-4.649-1.624-2.187 0-4.01.728-5.469 2.184-1.458 1.456-2.187 3.304-2.187 5.544 0 .859.2 1.699.602 2.52.437.821.656 1.25.656 1.288 0 .299-.091.71-.274 1.232-.145.485-.328.728-.547.728-.765 0-1.549-.579-2.351-1.736C1.113 13.347.73 11.872.73 10.08c0-2.987 1.112-5.413 3.336-7.28C6.326.933 8.934 0 11.886 0z" fill="currentColor"></path></svg>
+                                </a>
+        
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="footer-menu">
+                                <a href="mailto:info@theroom.boutique">info@theroom.boutique</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

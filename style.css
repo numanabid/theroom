@@ -1,0 +1,1169 @@
+* {
+    box-sizing: border-box;
+}
+html{
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Archivo', sans-serif;
+    background-color: rgba(0, 0, 0, .9);
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+
+ul,
+li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+}
+
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+@font-face {
+    font-family: "Silk Serif Light";
+    src: url(fonts/Silk\ Serif\ Light.otf);
+}
+
+@font-face {
+    font-family: "Silk Serif Regular Italic";
+    src: url(fonts/Silk\ Serif\ Regular\ Italic.otf);
+}
+
+@font-face {
+    font-family: "Silk Serif Light Italic";
+    src: url(fonts/Silk\ Serif\ Light\ Italic.otf);
+}
+
+:root {
+    --color-white:#ffff;
+    --color-black:#000;
+    --color-orange:#FF4016;
+    --color-grey:#A3A3A3;
+    --color-purple:#5B2586;
+    --color-yellow:#FCBE52;
+    --color-green:#1D7922;
+    --color-lite-blue:#4D96FC;
+}
+
+
+/* Background Flashes */
+
+canvas.noise {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: .3;
+    z-index: -1;
+}
+
+
+/* ================ navigation =================== */
+
+.main-header {
+    position: relative;
+}
+
+.main-header span svg {
+    position: absolute;
+    top: 0px;
+    right: -33px;
+    width: 155px;
+    transform: scale(2.5);
+}
+
+.nav-menu {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    max-width: 1215px;
+    padding: 52px 5px;
+}
+
+.logo a svg {
+    width: 193px;
+    height: 46px;
+}
+
+.logo a svg path {
+    fill: var(--color-white);
+}
+
+.menu-list {
+    margin-left: auto;
+}
+
+.menu-list ul {
+    display: flex;
+    position: relative;
+    z-index: 99;
+}
+
+.menu-list ul li:nth-child(1) {
+    margin-right: 2.8em;
+}
+
+.menu-list ul li a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -1px;
+}
+
+#down {
+    scroll-behavior: smooth;
+}
+/* =================== banner ==================== */
+
+.banner-text {
+    margin: 54px auto 0;
+    
+}
+.banner-text h1 span {
+    color: var(--color-white);
+    font-size: 126.966px;
+    font-weight: 600;
+    letter-spacing: -.05em;
+    display: inline-block;
+}
+
+.banner-text h1 span label {
+    font-weight: 200;
+    font-family: "Silk Serif Light Italic";
+}
+
+
+/* -===================== strip bar ================= */
+
+.strip-bar {
+    background-color: var(--color-white);
+    padding: 10px 0;
+}
+
+.strip-para-row {
+    display: flex;
+}
+
+.trip-para span {
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--color-black);
+}
+
+.text-row {
+    padding: 8.4% 0;
+    overflow: hidden;
+}
+
+.text-row span {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    padding: .67em .58em;
+    font-weight: 600;
+    color: #000;
+    font-size: 16px;
+}
+
+@media (min-width: 768px) {
+    .text-row span {
+        font-size: calc(16px + 20*((100vw - 767px)/599));
+    }
+}
+
+@media (min-width: 1340px) {
+    .text-row span {
+        font-size: 36px;
+    }
+}
+
+.text-row .row {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: transform;
+    flex-wrap: unset;
+    -ms-flex-wrap: unset;
+}
+
+.text-row--inner {
+    width: 103%;
+    margin-left: -1%;
+    background-color: #fff;
+    overflow: hidden;
+    -webkit-transform: matrix(1, .09, -.09, 1, 0, 0);
+    transform: matrix(1, .09, -.09, 1, 0, 0);
+    position: relative;
+}
+
+.text-row--inner+.text-row--inner {
+    z-index: 1
+}
+
+
+/* =============== show me what you do sec ================== */
+
+.waht-u-do-sec {
+    padding-top: 4.2%;
+    margin: 0 auto 0;
+    max-width: 1230px;
+}
+
+span.show-me {
+    font-size: 120px;
+    color: var(--color-white);
+    display: inherit;
+    letter-spacing: -.05em;
+}
+
+span.what-do {
+    font-family: "Silk Serif Light Italic";
+    color: var(--color-white);
+    font-size: 120px;
+    letter-spacing: -.05em;
+    margin: -20px 0 0;
+    display: inline-block;
+}
+
+.show-me-row {
+    margin-top: 89px;
+}
+
+.design-image {
+    position: relative;
+    overflow: hidden;
+    width: 98%;
+}
+
+.design-image-2 {
+    transform: translate(0px, 189px);
+}
+
+.design-image img {
+    max-width: 100%;
+    transition-duration: 0.5s;
+}
+
+.design-image:hover img {
+    transform: scale(1.1);
+    transition-duration: 0.5s;
+}
+
+.design-text h2 {
+    color: var(--color-white);
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -.05em;
+    font-weight: 600;
+    padding: 15px 0 10px;
+}
+
+.design-text p {
+    color: var(--color-white);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -.05em;
+}
+
+.design-text span svg {
+    margin-right: .45em;
+}
+
+.design-col {
+    margin: 0px 0 53px;
+}
+
+.swiper-first-row {
+    margin: 240px auto 0;
+}
+
+.tiny {
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.swiper-wrapper {
+    -webkit-transition-timing-function: linear!important;
+    transition-timing-function: linear!important;
+    position: relative;
+}
+
+.swiper-slide {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    position: relative;
+    overflow: hidden;
+    padding: 1.3em 5.3em;
+}
+
+.swiper-slide label img {
+    width: 2.45em;
+    height: 2.45em;
+    margin-right: 90px;
+}
+
+.swiper-slide span {
+    font-size: 120px;
+    color: var(--color-white);
+    font-weight: 600;
+}
+
+.swiper-slide p {
+    font-family: "Silk Serif Light Italic";
+    font-size: 120px;
+    color: var(--color-white);
+    font-weight: 300;
+}
+
+
+/* ================= about the room ===============*/
+
+.about-room-sec {
+    margin: 130px auto 0;
+    max-width: 1230px;
+}
+
+.about-room-text {
+    margin: 0 0 8%;
+}
+
+.about-room-text p {
+    color: var(--color-white);
+    font-size: 120px;
+    font-family: "Silk Serif Light Italic";
+    letter-spacing: -.05em;
+    margin-left: -10px;
+}
+
+.about-room-text h6 {
+    color: var(--color-white);
+    font-size: 120px;
+    letter-spacing: -.05em;
+    font-weight: 600;
+    margin-top: -0.3em;
+}
+
+.room-para {
+    position: relative;
+}
+.room-text-col{
+    padding-right: 0;
+}
+.circulr-col{
+    position: relative;
+}
+.circulr-col::before{
+    position: absolute;
+    top: 35px;
+    content: "";
+    left: 20px;
+    width: 30px;
+    height: 30px;
+    background-color: var(--color-purple);
+    border-radius: 50%;
+
+}
+.circulr-col::after{
+    position: absolute;
+    top: 105px;
+    content: "";
+    right: 11px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-green);
+    border-radius: 50%;
+
+}
+
+.room-para p {
+    letter-spacing: -.05em;
+    font-size: 56px;
+    color: var(--color-white);
+    font-weight: 500;
+    margin: 0 auto;
+    max-width: 947px;
+    line-height: 1.2;
+    padding: 0 0 59px;
+}
+
+.gear {
+    width: 101px;
+    height: 102px;
+    position: absolute;
+    right: 131px;
+    top: -113px;
+}
+
+.gear-2 {
+    width: 101px;
+    height: 102px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+
+/* ============== about value sec ================== */
+
+.about-value-inner {
+    margin: 130px auto 0;
+    max-width: 1178px;
+}
+
+.box-col {
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-top: -2px;
+}
+
+.abour-value-row {
+    margin-top: 85px;
+}
+
+.about-value-text h6 {
+    color: var(--color-white);
+    font-size: 120px;
+    letter-spacing: -.05em;
+    font-weight: 600;
+    line-height: 1.0;
+}
+
+.about-value-text h6 span {
+    font-family: "Silk Serif Light Italic";
+    letter-spacing: -.05em;
+    font-weight: 300;
+}
+
+.about-box {
+    border: 2px solid rgba(255, 255, 255, .1);
+    min-height: 398px;
+    padding: 6.9% 7.3%;
+}
+
+.about-box h6 {
+    color: var(--color-white);
+    font-size: 64px;
+    font-weight: 600;
+    letter-spacing: -.05em;
+    margin-bottom: .57em;
+}
+
+.about-box p {
+    color: var(--color-white);
+    font-size: 28px;
+    letter-spacing: -.05em;
+    line-height: 1.28571;
+    max-width: 540px;
+}
+
+.about-org {
+    background-color: var(--color-orange);
+    position: relative;
+}
+
+.about-box-arrow {
+    position: absolute;
+    bottom: 41px;
+    right: 37px;
+}
+
+.about-box-arrow svg {
+    color: var(--color-white);
+}
+
+
+/* ========== reverse row ========== */
+
+.text-reverse-sec {
+    margin-top: 80px;
+    margin-bottom: 50px;
+}
+
+.text-row--inner.reverse {
+    -webkit-transform: matrix(1, -.09, .09, 1, 0, 0);
+    transform: matrix(1, -.09, .09, 1, 0, 0);
+}
+
+
+/* =================== our experties sec =================== */
+
+.our-experties-sec {
+    margin: 0 auto 0;
+    max-width: 1230px;
+}
+
+.experties-text {
+    margin: 0 0 8%;
+}
+
+.experties-text h6 {
+    color: var(--color-white);
+    font-size: 120px;
+    letter-spacing: -.05em;
+    font-weight: 600;
+    line-height: 1.0;
+}
+
+.experties-text p {
+    font-family: "Silk Serif Light Italic";
+    color: var(--color-white);
+    font-size: 120px;
+    letter-spacing: -.05em;
+    margin-top: -0.3em;
+}
+
+.startup {
+    border-bottom: 2px solid var(--color-white);
+}
+
+.startup-col {
+    margin-bottom: 82px;
+}
+
+.startup h5 {
+    color: var(--color-white);
+    font-size: 64px;
+    font-weight: 600;
+    letter-spacing: -.05em;
+    margin-bottom: .55em;
+}
+
+.startup.startup-2 h5 {
+    max-width: 271px;
+}
+
+.startup-row {
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 1.3em 0;
+    width: 100%;
+    border-bottom: 2px solid var(--color-white);
+}
+
+.startup-row span {
+    color: var(--color-white);
+    font-size: 26px;
+    letter-spacing: -.056em;
+}
+
+.startup-row span svg {
+    color: var(--color-white);
+    width: 30px;
+    height: 33px;
+}
+
+
+/* ================ the room ================== */
+
+.the-room-sec {
+    margin: 70px auto 0;
+    max-width: 1230px;
+}
+.room-row{
+    margin-top: 60px;
+}
+.room-text h6 {
+    color: var(--color-white);
+    font-size: 120px;
+    letter-spacing: -.05em;
+    font-weight: 600;
+    line-height: 1.0;
+}
+
+.room-text p {
+    font-family: "Silk Serif Light Italic";
+    color: var(--color-white);
+    font-size: 120px;
+    letter-spacing: -.05em;
+    margin-top: -0.3em;
+}
+.outCircle  {
+    width: 470px;
+    height: 470px;
+    border: 4px solid #fff;
+    position: absolute;
+    top: 50px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    left: 65px;
+}
+.outCircle-sm{
+    position: relative;
+}
+.outCircle-sm::before{
+    position: absolute;
+    bottom: -133px;
+    left: 12px;
+    content: "";
+    background-color: var(--color-yellow);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+.outCircle-sm::after{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    content: "";
+    background-color: var(--color-lite-blue);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+
+}
+.outCircle p{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    height: fit-content;
+    text-align: center;
+    color: var(--color-white);
+    font-size: 22px;
+    font-weight: 500;
+}
+.outCircle p span{
+    display: block;
+}
+.outCircle p .sc{
+    margin-top: -8px;
+}
+.circle-inner-text p{
+    color: var(--color-white);
+}
+.rotate {
+    width: 100%;
+    height: 100%;
+    -webkit-animation: circle 7s infinite linear;    
+   
+}
+.inner-circule {
+    width: 50px;
+    height: 50px;
+    background: var(--color-orange);
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius:50%;
+    position: absolute;
+    left: 0px;
+    top: 100px;
+    background-color: var(--color-orange);
+    display: block;
+
+}
+@-webkit-keyframes circle {
+    from {-webkit-transform: rotateZ(0deg)}
+    to {-webkit-transform: rotateZ(360deg)}
+}
+@-webkit-keyframes ccircle {
+    from {-webkit-transform: rotateZ(360deg)}
+    to {-webkit-transform: rotateZ(0deg)}
+}
+
+/* ================== our blog ================= */
+
+.our-blog-sec {
+    margin: 55px auto 0;
+    max-width: 1230px;
+}
+
+.blog-heading h6 {
+    color: var(--color-white);
+    font-size: 120px;
+    letter-spacing: -.05em;
+    font-weight: 600;
+    margin: 0 0 8%;
+}
+
+.blog-heading h6 span {
+    font-family: "Silk Serif Light Italic";
+    font-weight: 300;
+}
+
+.blog-img {
+    position: relative;
+    overflow: hidden;
+    width: 97%;
+}
+
+.blog-img img {
+    max-width: 100%;
+    transition-duration: 0.5s;
+}
+
+.blog-img:hover img {
+    transform: scale(1.1);
+    transition-duration: 0.5s;
+}
+
+.blog-inner-text h5 {
+    color: var(--color-white);
+    letter-spacing: -.05em;
+    font-size: 36px;
+    padding: 25px 0 10px;
+}
+
+.blog-inner-text p {
+    color: var(--color-white);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -.05em;
+}
+.blog-inner-text p span{
+    margin-right: 10px;
+}
+.blog-inner-sec{
+    margin: 0 0 62px 0;
+}
+/* * =============== stay in know sec ============  */
+.saty-heading{
+    display: inline-flex;
+    align-items: flex-end;
+}
+.saty-heading img{
+    max-width: 83px;
+    margin-right: 50px;
+}
+.saty-heading{
+    margin: 0 0 8%;
+}
+.saty-heading h6{
+    color: var(--color-white);
+    font-size: 120px;
+    letter-spacing: -.05em;
+    font-weight: 600;
+}
+.saty-heading h6 label{
+    font-family: "Silk Serif Light Italic";
+    font-weight: 300;
+}
+/*=============== form======== */
+.stay-sec{
+    margin: 70px auto 0;
+    max-width: 1230px;
+}
+.stay-form input[type=text]{
+    background-color: transparent;
+    border-bottom: 2px solid var(--color-white) !important;
+    display: inline-block;
+    width: 100%;
+    outline: none;
+    border: none;
+    color: var(--color-white);
+    font-size: 44px;
+    padding: 27px 0;
+}
+.stay-form input[type=text]::placeholder{
+    color: var(--color-grey);
+}
+.stay-form button[type=submit]{
+    color: var(--color-white);
+    text-decoration: underline;
+    font-size: 44px;
+    background: transparent;
+    border: none;
+    display: inline-block;
+    outline: none;
+    margin-top: 6.7%;
+    margin-bottom: 3.45%;
+}
+.project-desc{
+    margin: 33px 0 0;
+}
+/* ===================== footer ===================== */
+.footer{
+    margin: 0 auto;
+    max-width: 1246px;
+}
+.footer-row{
+    align-items: center;
+    padding: 0 0 100px;
+}
+.footer-logo{
+    padding: 100px 0 57px;
+}
+.footer-logo a svg{
+   color: var(--color-white);
+   width: 193px;
+    height: 46px;
+   
+}
+.footer-menu a{
+    color: var(--color-white);
+    font-size: 44px;
+    letter-spacing: -.05em;
+}
+.social-icon a svg{
+    color: var(--color-white);
+    margin-right:45px;
+}
+
+/* =============== responsive =================== */
+@media screen and (max-width:1100px){
+    .outCircle {
+        left: 20px;
+    }
+    .about-value-sec{
+        padding: 0 10px;
+    }
+}
+@media screen and (max-width:991px) {
+    .room-row{
+        flex-direction: column-reverse;
+    }
+}
+@media screen and (max-width:800px){
+    .banner-text h1 span {
+        font-size: 86px;
+    }
+    span.show-me {
+        font-size: 86px;
+    }
+    span.what-do {
+        font-size: 86px;
+    }
+    .design-text h2 {
+        font-size: 38px;
+    }
+    .swiper-slide p {
+        font-size: 86px;
+    }
+    .swiper-slide span {
+        font-size: 86px;
+    }
+    .swiper-slide {
+        padding: 1.3em 1.6em;
+    }
+    .swiper-slide label img {
+        margin-right: 50px;
+    }
+    .about-room-text p {
+        font-size: 86px;
+    }
+    .about-room-text h6 {
+        font-size: 86px;
+    }
+    .gear {
+        right: 58px;
+    }
+    .room-para p {
+        font-size: 40px;
+    }
+    .about-value-text h6 {
+        font-size: 86px;
+    }
+    .about-box h6 {
+        font-size: 46px;
+    }
+    .about-box h6 {
+        font-size: 46px;
+    }
+    .experties-text h6 {
+        font-size: 86px;
+    }
+    .experties-text p {
+        font-size: 86px;
+    }
+    .startup h5 {
+        font-size: 40px;
+    }
+    .room-text h6 {
+        font-size: 86px;
+    }
+    .room-text p {
+        font-size: 86px;
+    }
+    .blog-heading h6 {
+        font-size: 86px;
+    }
+    .blog-inner-text h5 {
+        font-size: 26px;
+    }
+    .saty-heading h6 {
+        font-size: 86px;
+    }
+    .saty-heading img {
+        max-width: 68px;
+    }
+    .social-icon a svg {
+        margin-right: 27px;
+    }
+    .footer-menu a {
+        font-size: 34px;
+    }
+    .room-text-col {
+        margin-top: 124px;
+    }
+    .outCircle {
+        left: 0;
+    }
+    .circulr-col{
+        display: flex;
+        justify-content: center;
+          margin-bottom: 149px;
+    }
+    .stay-form input[type=text] {
+        
+        font-size: 34px;
+    }
+   
+    
+}
+@media screen and (max-width:600px)  {
+    .menu-list ul li:first-child{
+        display: none;
+    }
+
+    .logo a svg {
+        width: 158px;
+        height: 24px;
+    }
+    .banner-text h1 span,
+    .swiper-slide p,
+    .swiper-slide span,
+    .about-room-text p,
+    .about-room-text h6,
+    .about-value-text h6,
+    .about-box h6,
+    .experties-text h6,
+    .experties-text p,
+    .room-text h6,
+    .room-text p,
+    .blog-heading h6,
+    .saty-heading h6 {
+        font-size: 40px;
+    }
+    .banner-text {
+        margin: 7px auto 0;
+    }
+    .menu-list ul li a {
+        font-size: 16px;
+    }
+    span.show-me {
+        font-size: 48px;
+    }
+    span.what-do {
+        font-size: 48px;
+    }
+    .show-me-row {
+        margin-top: 50px;
+    }
+    .design-text h2 {
+        font-size: 32px;
+    }
+    .design-image-2 {
+        transform: translate(0px, 0px);
+    }
+    .swiper-slide label img {
+        margin-right: 29px;
+    }
+    .swiper-slide label img {
+        width: 1.45em;
+        height: 1.45em;
+    }
+    .design-col {
+        margin: 0px 0 0px;
+    }
+    .design{
+        margin: 0 0 25px;
+    }
+    .design-text h2 {
+        padding: 25px 0 10px;
+    }
+    .swiper-slide {
+        padding: 1em 1.6em;
+    }
+    .swiper-first-row {
+        margin: 40px auto 0;
+    }
+    .about-room-sec {
+        margin: 40px auto 0;
+    }
+    
+    .about-room-text p {
+
+        margin-left: 0px;
+    }
+    .room-para p {
+        font-size: 24px;
+    }
+    .about-value-inner {
+        margin: 40px auto 0;
+    }
+    .abour-value-row {
+        margin-top: 60px;
+    }
+    .about-box p {
+        font-size: 24px;
+    }
+    .about-box {
+       
+        min-height: 200px;
+    }
+    .startup-row span {
+        font-size: 18px;
+    }
+    .startup-row span svg {
+        width: 25px;
+        height: 25px;
+    }
+    .startup-col {
+        margin-bottom: 60px;
+    }
+    .inner-circule {
+        width: 30px;
+        height: 30px;
+        top: 50px;
+    }
+    .outCircle p {
+        font-size: 16px;
+    }
+    .outCircle {
+        width: 260px;
+        height: 260px;
+    }
+    .circulr-col::before {
+        top: 10px;
+        left: 36px;
+        width: 20px;
+        height: 20px;
+    }
+    .room-row {
+        margin-top: 30px;
+    }
+    .circulr-col::after {
+        top: 81px;
+        right: 19px;
+        width: 15px;
+        height: 15px;
+    }
+    .outCircle-sm::after {
+        width: 20px;
+        height: 20px;
+    }
+    .outCircle-sm::before {
+        bottom: -52px;
+        left: 0px;
+        width: 30px;
+        height: 30px;
+    }
+    .room-text-col {
+        margin-top: 20px;
+    }
+    .our-blog-sec {
+        margin: 40px auto 0;
+    }
+    .blog-inner-sec {
+        margin: 0 0 25px 0;
+    }
+    .saty-heading img {
+        max-width: 32px;
+        margin-right: 15px;
+    }
+    .stay-sec {
+        margin: 40px auto 0;
+    }
+    .stay-form input[type=text]{
+        font-size: 28px;
+        padding: 20px 0;
+    }
+    .stay-form button[type=submit] {
+        font-size: 24px;
+    }
+    .footer-logo {
+        padding: 40px 0 40px;
+    }
+    .social-icon{
+        margin: 0 0 30px;
+    }
+    .footer-row {
+        padding: 0 0 50px;
+    }
+    .footer-menu a {
+        font-size: 32px;
+    }
+    .footer-logo a svg {
+        width: 150px;
+        height: 25px;
+    }
+    .the-room-sec {
+        padding: 0 5px;
+    }
+    .room-para p {
+        padding: 0 0 40px;
+    }
+    .gear {
+        width: 55px;
+        height: 55px;
+        right: 0;
+    }
+    .design-image,
+    .blog-img {
+        margin: auto;
+    }
+    .about-box-arrow svg {
+        
+        width: 42px;
+        height: 42px;
+    }
+}
